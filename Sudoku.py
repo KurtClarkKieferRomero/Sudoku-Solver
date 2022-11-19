@@ -20,6 +20,18 @@ def solve(bo):
     else:
         row, col = find
 
+    for i in range (1,10):
+        # If the value is valid, it will be added in i
+        if valid(bo, i, (row, col)):
+            bo[row][col] = i
+        # Recursively try to solve the solution
+            if solve(bo):
+                return True
+        # If the solution failed, it will backtrack
+            bo[row][col] = 0
+
+    return False
+
 # Check if the board is valid or not
 def valid(bo, number, position):
     # Check row
@@ -64,3 +76,10 @@ def find_empty(bo):
             if bo[i][j] == 0:
                 return (i, j) # i = row, j = col
     return None
+
+print_board(sudoku_board)
+solve(sudoku_board)
+print("\n")
+print("Solved Sudoku Board Below")
+print("\n")
+print_board(sudoku_board)
