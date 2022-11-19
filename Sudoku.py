@@ -11,6 +11,27 @@ sudoku_board= [
     [0, 1, 0, 0, 0, 0, 0, 3, 7],
     [4, 9, 2, 0, 0, 0, 0, 0, 0]
 ]
+# Check if the board is valid or not
+def valid(bo, number, position):
+    # Check row
+    for i in range(len(bo[0])):
+        if bo[position[0]][i] == number and position[1] != i:
+            return False
+
+    # Check column
+    for i in range(len(bo)):
+        if bo[i][position[1]] == number and position[0] != i:
+            return False
+    # Check 3x3 box
+    box_x = position[1] // 3
+    box_y = position[0] // 3
+
+    for i in range(box_y * 3, box_y * 3 + 3):
+        for j in range(box_x * 3, box_x * 3 + 3):
+            if bo[i][j] == number and (i, j) != position:
+                return False
+    return True
+
 # 0 meant blank space
 # Visual representation for the sudoku board
 def print_board(bo):
