@@ -11,6 +11,15 @@ sudoku_board= [
     [0, 1, 0, 0, 0, 0, 0, 3, 7],
     [4, 9, 2, 0, 0, 0, 0, 0, 0]
 ]
+# Solver for the sudoku board
+def solve(bo):
+    # This means that we found the solution
+    find = find_empty(bo)
+    if not find:
+        return True
+    else:
+        row, col = find
+
 # Check if the board is valid or not
 def valid(bo, number, position):
     # Check row
@@ -54,4 +63,4 @@ def find_empty(bo):
         for j in range(len(bo[0])):
             if bo[i][j] == 0:
                 return (i, j) # i = row, j = col
-
+    return None
